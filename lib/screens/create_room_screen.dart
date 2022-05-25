@@ -131,7 +131,7 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                                     const BoxConstraints(minWidth: 88.0),
                                 child: Center(
                                     child: const Text(
-                                  'With a friend',
+                                  'Create',
                                   textAlign: TextAlign.center,
                                   style:
                                       TextStyle(fontSize: 18, color: textColor),
