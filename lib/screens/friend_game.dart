@@ -1,19 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:tic_tac_toe/screens/friend_game.dart';
-import 'package:tic_tac_toe/utils/colors.dart';
+import 'package:tic_tac_toe/screens/create_room_screen.dart';
+import 'package:tic_tac_toe/screens/join_room_screen.dart';
 
-class MainMenuScreen extends StatefulWidget {
-  static String routeName = '/main-menu';
-  MainMenuScreen({Key? key}) : super(key: key);
+import '../utils/colors.dart';
+
+class FriendMenu extends StatefulWidget {
+  static String routeName = '/friend_menu';
+  FriendMenu({Key? key}) : super(key: key);
 
   @override
-  State<MainMenuScreen> createState() => _MainMenuScreenState();
+  State<FriendMenu> createState() => _FriendMenuState();
 }
 
-class _MainMenuScreenState extends State<MainMenuScreen> {
-  void withFriend(BuildContext context) {
-    Navigator.pushNamed(context, FriendMenu.routeName);
+class _FriendMenuState extends State<FriendMenu> {
+  void createRoom(BuildContext context) {
+    Navigator.pushNamed(context, CreateRoomScreen.routeName);
   }
+
+  void joinRoom(BuildContext context) {
+    Navigator.pushNamed(context, JoinRoomScreen.routeName);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,7 +77,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
             margin: EdgeInsets.only(top: 50),
             child: Center(
               child: Text(
-                "Choose Your Play Mode",
+                "Create or Join a Room",
                 style: TextStyle(
                     fontWeight: FontWeight.w700,
                     fontSize: 26,
@@ -92,7 +99,9 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    createRoom(context);
+                  },
                   child: Ink(
                     decoration: BoxDecoration(
                         gradient: gradientButton,
@@ -104,7 +113,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       constraints: const BoxConstraints(minWidth: 88.0),
                       child: Center(
                           child: const Text(
-                        'With AI',
+                        'Create Room',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 18),
                       )),
@@ -118,7 +127,9 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.all(Radius.circular(20))),
                   ),
-                  onPressed: () {withFriend(context);},
+                  onPressed: () {
+                    joinRoom(context);
+                  },
                   child: Ink(
                     decoration: BoxDecoration(
                         color: Colors.white,
@@ -130,7 +141,7 @@ class _MainMenuScreenState extends State<MainMenuScreen> {
                       constraints: const BoxConstraints(minWidth: 88.0),
                       child: Center(
                           child: const Text(
-                        'With a friend',
+                        'Join Room',
                         textAlign: TextAlign.center,
                         style: TextStyle(fontSize: 18, color: textColor),
                       )),

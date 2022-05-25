@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/screens/create_room_screen.dart';
+import 'package:tic_tac_toe/screens/friend_game.dart';
+import 'package:tic_tac_toe/screens/join_room_screen.dart';
 import 'package:tic_tac_toe/utils/colors.dart';
 import 'package:flutter/services.dart';
 import 'screens/main_menu.dart';
@@ -18,11 +21,17 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
+      routes: {
+        MainMenuScreen.routeName:(context) => MainMenuScreen(),
+        FriendMenu.routeName:(context) => FriendMenu(),
+        CreateRoomScreen.routeName:(context) => CreateRoomScreen(),
+        JoinRoomScreen.routeName:(context) => JoinRoomScreen(),
+      },
       theme: ThemeData(
         scaffoldBackgroundColor: bgColor,
         textTheme: GoogleFonts.specialEliteTextTheme()
       ),
-      home: MainMenuScreen(),
+      initialRoute: MainMenuScreen.routeName,
     );
   }
 }
