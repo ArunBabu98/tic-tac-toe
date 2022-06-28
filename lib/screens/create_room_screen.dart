@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tic_tac_toe/resources/socket_methods.dart';
 import 'package:tic_tac_toe/utils/colors.dart';
 
 class CreateRoomScreen extends StatefulWidget {
@@ -11,6 +12,13 @@ class CreateRoomScreen extends StatefulWidget {
 
 class _CreateRoomScreenState extends State<CreateRoomScreen> {
   final TextEditingController _controller = TextEditingController();
+  final SocketMethods _socketMethods = SocketMethods();
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _socketMethods.createRoomSuccessListener(context);
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -117,7 +125,9 @@ class _CreateRoomScreenState extends State<CreateRoomScreen> {
                                   borderRadius:
                                       BorderRadius.all(Radius.circular(20))),
                             ),
-                            onPressed: () {},
+                            onPressed: () async{
+                              _socketMethods.createRoom(_controller.text);
+                            },
                             child: Ink(
                               decoration: BoxDecoration(
                                   color: Colors.white,
